@@ -1,30 +1,18 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import { ListEmployees } from '../services/EmployeeService'
 
 const ListEmployeesComponent = () => {
-    const dummydata = [
-        {
-        "id": 1,
-        "IdNo": "0011205737080",
-        "firstname": "Luvuyo",
-        "Lastname": "Tafeni",
-        "email": "luvuyotafeni012@gmail.com",
-        "Gender": "Male",
-        "Position": "Developer",
-        "Status": "On-Site",
-        "Physical_Address": "19 Tosti street, Delft, Capetown, 7102"
-        },
-        {
-            "id": 2,
-            "IdNo": "0011205737080",
-            "firstname": "Luvuyo",
-            "Lastname": "Tafeni",
-            "email": "luvuyotafeni012@gmail.com",
-            "Gender": "Male",
-            "Position": "Developer",
-            "Status": "On-Site",
-            "Physical_Address": "19 Tosti street, Delft, Capetown, 7102"
-            }
-    ]
+    
+    const [employees, setEmployees] =useState([])
+
+    useEffect(() => {
+        ListEmployees().then((response) => {
+            setEmployees(response.data);
+        }).catch(error => {
+            console.error(error);
+        })
+    }, [])
+
   return (
     <div className='container'>
         <h2 className='text-center'>
