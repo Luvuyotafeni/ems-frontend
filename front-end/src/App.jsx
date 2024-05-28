@@ -1,4 +1,5 @@
 import './App.css'
+import EmployeeComponent from './components/EmployeeComponent'
 import Footer from './components/Footer'
 import HeaderComponent from './components/HeaderComponent'
 import ListEmployeesComponent from './components/ListEmployeesComponent'
@@ -12,6 +13,7 @@ function App() {
         <HeaderComponent/>
           <Routes>
             <Route path='/employees' element={<ListEmployeesComponent/>}></Route>
+            <Route path='/add-Employee' element={<EmployeeComponent/>}></Route>
           </Routes>
         <Footer/>
         </BrowserRouter>
