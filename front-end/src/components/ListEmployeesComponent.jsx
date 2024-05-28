@@ -35,17 +35,17 @@ const ListEmployeesComponent = () => {
 
             <tbody>
                 {
-                    dummydata.map(employee => 
-                        <tr key={employee.id}>
-                            <td>{employee.id}</td>
-                            <td>{employee.IdNo}</td>
-                            <td>{employee.firstname}</td>                          
-                            <td>{employee.Lastname}</td>
-                            <td>{employee.email}</td>
-                            <td>{employee.Gender}</td>
-                            <td>{employee.Position}</td>
-                            <td>{employee.Status}</td>
-                            <td>{employee.Physical_Address}</td>
+                    employees.map(employees => 
+                        <tr key={employees.id}>
+                            <td>{employees.id}</td>
+                            <td>{employees.IdNo}</td>
+                            <td>{employees.firstname}</td>                          
+                            <td>{employees.Lastname}</td>
+                            <td>{employees.email}</td>
+                            <td>{employees.Gender}</td>
+                            <td>{employees.Position}</td>
+                            <td>{employees.Status}</td>
+                            <td>{employees.Physical_Address}</td>
                         </tr>
                     )
                 }
