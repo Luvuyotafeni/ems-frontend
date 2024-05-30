@@ -1,92 +1,101 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react';
+import { createEmployee } from '../services/EmployeeService';
+import { useNavigate } from 'react-router-dom';
 
 const EmployeeComponent = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [gender, setGender] = useState('');
+  const [position, setPosition] = useState('');
+  const [idNo, setIdNo] = useState('');
+  const [status, setStatus] = useState('');
+  const [physicalAddress, setPhysicalAddress] = useState('');
 
-    const [firstName, setFirstname] = useState('')
-    const [LastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [Gender, setGender] = useState('')
-    const [position, setPosition] = useState('')
-    const [IdNo, setIdNo] = useState('')
-    const [Status, setStatus] = useState('')
-    const [Physical_Adress, setPhyiscal_Address] = useState('')
+  const navigate = useNavigate();
+  const handleIdNo = (e) => setIdNo(e.target.value);
+  const handleFirstName = (e) => setFirstName(e.target.value);
+  const handleLastName = (e) => setLastName(e.target.value);
+  const handleEmail = (e) => setEmail(e.target.value);
+  const handleGender = (e) => setGender(e.target.value);
+  const handleStatus = (e) => setStatus(e.target.value);
+  const handlePosition = (e) => setPosition(e.target.value);
+  const handlePhysicalAddress = (e) => setPhysicalAddress(e.target.value);
 
+  const saveEmployee = (e) => {
+    e.preventDefault();
 
-    function handleFirstname(e){
-      setFirstname(e.target.value);
-    }
-    function handleLastName(e){
-      setLastName(e.target.value);
-    }
-    function handleEmail(e){
-      setEmail(e.target.value);
-    }
-    function handleIdNo(e){
-      setIdNo(e.target.value);
-    }
-    function handleGender(e){
-      setGender(e.target.value);
-    }
-    function handlePosition(e){
-      setPosition(e.target.value);
-    }
-    function handleStatus(e){
-      setFirstname(e.target.value);
-    }
-    function handlePhysical_address(e){
-      setPhyiscal_Address(e.target.value);
-    }
+    const employee = {
+      idNo,
+      firstName,
+      lastName,     
+      email,
+      gender,
+      status,
+      position,
+      physicalAddress
+  
+    };
 
+    console.log('Employee to be saved:', employee); // Debugging line
+
+    createEmployee(employee).then((response) => {
+      console.log(response.data);
+      navigate('/employees');
+    }).catch(error => {
+      console.error('Error saving employee:', error);
+    });
+  }
 
   return (
     <div className='container'>
-      <br></br>
+      <br />
       <div className='row'>
-        <div className='card col-md-6 offset-md-3 offset-md-3'>
-          <h2 className='text-center'>Add employee</h2>
+        <div className='card col-md-6 offset-md-3'>
+          <h2 className='text-center'>Add Employee</h2>
           <div className='card-body'>
             <form>
               <div className='form-group mb-2'>
                 <label className='form-label'>First Name</label>
-                <input type='text' placeholder='Enter First name' name='firstname' value={firstName} className='form-control' onChange={handleFirstname}></input>
+                <input type='text' placeholder='Enter First Name' value={firstName} className='form-control' onChange={handleFirstName} />
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Last Name</label>
-                <input type='text' placeholder='Enter Last Name' name='Last Name' value={firstName} className='form-control' onChange={handleLastName}></input>
+                <input type='text' placeholder='Enter Last Name' value={lastName} className='form-control' onChange={handleLastName} />
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Email</label>
-                <input type='text' placeholder='Enter Email' name='email' value={email} className='form-control' onChange={handleEmail}></input>
+                <input type='text' placeholder='Enter Email' value={email} className='form-control' onChange={handleEmail} />
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Id No</label>
-                <input type='text' placeholder='Enter Id No' name='IdNo' value={IdNo} className='form-control' onChange={handleIdNo}></input>
+                <input type='text' placeholder='Enter Id No' value={idNo} className='form-control' onChange={handleIdNo} />
               </div>
               <div className='form-group mb-2'>
-                <label className='form-label'>Gender </label>
-                <input type='text' placeholder='Enter Gender' name='Gender' value={Gender} className='form-control' onChange={handleGender}></input>
+                <label className='form-label'>Gender</label>
+                <input type='text' placeholder='Enter Gender' value={gender} className='form-control' onChange={handleGender} />
               </div>
               <div className='form-group mb-2'>
-                <label className='form-label mb-2'>Position</label>
-                <input type='text' placeholder='Enter Position' name='Position' value={position} className='form-control' onChange={handlePosition}></input>
+                <label className='form-label'>Position</label>
+                <input type='text' placeholder='Enter Position' value={position} className='form-control' onChange={handlePosition} />
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Status</label>
-                <input type='text' placeholder='Enter Status' name='Status' value={Status} className='form-control' onChange={handleStatus}></input>
+                <input type='text' placeholder='Enter Status' value={status} className='form-control' onChange={handleStatus} />
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Physical Address</label>
-                <input type='text' placeholder='Enter Physical Address' name='Physical_Address' value={Physical_Adress} className='form-control' onChange={handlePhysical_address}></input>
+                <input type='text' placeholder='Enter Physical Address' value={physicalAddress} className='form-control' onChange={handlePhysicalAddress} />
               </div>
-              <button className='btn btn-success mb-2'>Add employee</button>
+              <button className='btn btn-success mb-2' onClick={saveEmployee}>Add Employee</button>
             </form>
           </div>
         </div>
       </div>
-      <br></br>
-      <br></br>
+      <br />
+      <br />
     </div>
-  )
+  );
 }
 
-export default EmployeeComponent
+export default EmployeeComponent;

@@ -1,69 +1,62 @@
-import React, {useEffect, useState} from 'react'
-import { ListEmployees } from '../services/EmployeeService'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
+import { ListEmployees } from '../services/EmployeeService';
+import { useNavigate } from 'react-router-dom';
 
 const ListEmployeesComponent = () => {
-    
-    const [employees, setEmployees] =useState([])
+  const [employees, setEmployees] = useState([]);
 
-    const navigator = useNavigate();
+  const navigate = useNavigate();
 
-    useEffect(() => {
-        ListEmployees().then((response) => {
-            setEmployees(response.data);
-        }).catch(error => {
-            console.error(error);
-        })
-    }, [])
+  useEffect(() => {
+    ListEmployees().then((response) => {
+      setEmployees(response.data);
+    }).catch(error => {
+      console.error(error);
+    });
+  }, []);
 
-    function AddNewEmployee(){
-        navigator('/add-Employee')
-    }
+  function AddNewEmployee() {
+    navigate('/add-Employee');
+  }
 
   return (
     <div className='container'>
-        <h2 className='text-center'>
-            Company employees
-        </h2>
-        <button className='btn btn-primary mb-2' onClick={AddNewEmployee}> Add employee </button>
-        <table className='table table-striped table-bordered'>
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>IdNo</th>
-                    <th>firstname</th>
-                    <th>lastName</th>
-                    <th>email</th>
-                    <th>Gender</th>
-                    <th>Position</th>
-                    <th>Status</th>
-                    <th>Physical_Address</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                {
-                    employees.map(employees => 
-                        <tr key={employees.id}>
-                            <td>{employees.id}</td>
-                            <td>{employees.IdNo}</td>
-                            <td>{employees.firstname}</td>                          
-                            <td>{employees.Lastname}</td>
-                            <td>{employees.email}</td>
-                            <td>{employees.Gender}</td>
-                            <td>{employees.Position}</td>
-                            <td>{employees.Status}</td>
-                            <td>{employees.Physical_Address}</td>
-                        </tr>
-                    )
-                }
-                <tr>
-
-                </tr>
-            </tbody>
-        </table>
+      <h2 className='text-center'>Company Employees</h2>
+      <button className='btn btn-primary mb-2' onClick={AddNewEmployee}>Add Employee</button>
+      <table className='table table-striped table-bordered'>
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>IdNo</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Position</th>
+            <th>Status</th>
+            <th>Physical Address</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            employees.map(employee =>
+              <tr key={employee.id}>
+                <td>{employee.id}</td>
+                <td>{employee.idNo}</td>
+                <td>{employee.firstName}</td>
+                <td>{employee.lastName}</td>
+                <td>{employee.email}</td>
+                <td>{employee.gender}</td>
+                <td>{employee.position}</td>
+                <td>{employee.status}</td>
+                <td>{employee.physicalAddress}</td>
+              </tr>
+            )
+          }
+        </tbody>
+      </table>
     </div>
-  )
+  );
 }
 
-export default ListEmployeesComponent
+export default ListEmployeesComponent;
