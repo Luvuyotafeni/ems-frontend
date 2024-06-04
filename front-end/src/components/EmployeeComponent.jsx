@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createEmployee } from '../services/EmployeeService';
+import { createEmployee, getEmployee } from '../services/EmployeeService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const EmployeeComponent = () => {
@@ -23,6 +23,23 @@ const EmployeeComponent = () => {
   const handleStatus = (e) => setStatus(e.target.value);
   const handlePosition = (e) => setPosition(e.target.value);
   const handlePhysicalAddress = (e) => setPhysicalAddress(e.target.value);
+
+  useState(() =>{
+    if (id){
+      getEmployee(id).then((response)=>{
+        setIdNo(response.data.idNo);
+        setFirstName(response.data.firstName);
+        setLastName(response.data.lastName);
+        setEmail(response.data.email);
+        setGender(response.data.gender);
+        setStatus(response.data.status);
+        setPosition(response.data.position);
+        setPhysicalAddress(response.data.physicalAddress);
+      }).catch(error => {
+        console.error(error);
+      })
+    }
+  }, [id])
 
   const saveEmployee = (e) => {
     e.preventDefault();
