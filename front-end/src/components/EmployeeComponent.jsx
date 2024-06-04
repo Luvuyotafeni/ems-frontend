@@ -57,35 +57,35 @@ const EmployeeComponent = () => {
             <form>
               <div className='form-group mb-2'>
                 <label className='form-label'>First Name</label>
-                <input type='text' placeholder='Enter First Name' value={firstName} className='form-control' onChange={handleFirstName} />
+                <input type='text' placeholder='Enter First Name' value={firstName} className='form-control' onChange={handleFirstName} required/>
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Last Name</label>
-                <input type='text' placeholder='Enter Last Name' value={lastName} className='form-control' onChange={handleLastName} />
+                <input type='text' placeholder='Enter Last Name' value={lastName} className='form-control' onChange={handleLastName} required/>
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Email</label>
-                <input type='text' placeholder='Enter Email' value={email} className='form-control' onChange={handleEmail} />
+                <input type='text' placeholder='Enter Email' value={email} className='form-control' onChange={handleEmail} required/>
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Id No</label>
-                <input type='text' placeholder='Enter Id No' value={idNo} className='form-control' onChange={handleIdNo} />
+                <input type='text' placeholder='Enter Id No' value={idNo} className='form-control' onChange={handleIdNo} required/>
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Gender</label>
-                <input type='text' placeholder='Enter Gender' value={gender} className='form-control' onChange={handleGender} />
+                <input type='text' placeholder='Enter Gender' value={gender} className='form-control' onChange={handleGender} required/>
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Position</label>
-                <input type='text' placeholder='Enter Position' value={position} className='form-control' onChange={handlePosition} />
+                <input type='text' placeholder='Enter Position' value={position} className='form-control' onChange={handlePosition} required/>
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Status</label>
-                <input type='text' placeholder='Enter Status' value={status} className='form-control' onChange={handleStatus} />
+                <input type='text' placeholder='Enter Status' value={status} className='form-control' onChange={handleStatus} required/>
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Physical Address</label>
-                <input type='text' placeholder='Enter Physical Address' value={physicalAddress} className='form-control' onChange={handlePhysicalAddress} />
+                <input type='text' placeholder='Enter Physical Address' value={physicalAddress} className='form-control' onChange={handlePhysicalAddress} required/>
               </div>
               <button className='btn btn-success mb-2' onClick={saveEmployee}>Add Employee</button>
             </form>
