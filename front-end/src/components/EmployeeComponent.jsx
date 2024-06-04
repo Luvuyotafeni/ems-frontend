@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createEmployee, getEmployee } from '../services/EmployeeService';
+import { createEmployee, getEmployee, updateEmployee } from '../services/EmployeeService';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const EmployeeComponent = () => {
@@ -41,7 +41,7 @@ const EmployeeComponent = () => {
     }
   }, [id])
 
-  const saveEmployee = (e) => {
+  const saveOrUpdateEmployee = (e) => {
     e.preventDefault();
 
     const employee = {
@@ -56,14 +56,27 @@ const EmployeeComponent = () => {
   
     };
 
-    console.log('Employee to be saved:', employee); // Debugging line
+    if (id){
+      updateEmployee(id, employee).then((response)=>{
+        console.log(response.data);
+        navigate('/employees');
+      }).catch(error => {
+        console.error(error);
+      })
+    } else {
+      createEmployee(employee).then((response) => {
+        console.log(response.data);
+        console.log('Employee to be saved:', employee); // Debugging line
+        navigate('/employees');
+      }).catch(error => {
+        console.error('Error saving employee:', error);
+      });
+    }
+    
 
-    createEmployee(employee).then((response) => {
-      console.log(response.data);
-      navigate('/employees');
-    }).catch(error => {
-      console.error('Error saving employee:', error);
-    });
+    
+
+    
   }
 
   function pageTitle(){
@@ -116,7 +129,7 @@ const EmployeeComponent = () => {
                 <label className='form-label'>Physical Address</label>
                 <input type='text' placeholder='Enter Physical Address' value={physicalAddress} className='form-control' onChange={handlePhysicalAddress} required/>
               </div>
-              <button className='btn btn-success mb-2' onClick={saveEmployee}>Add Employee</button>
+              <button className='btn btn-success mb-2' onClick={saveOrUpdateEmployee}>Add Employee</button>
             </form>
           </div>
         </div>
