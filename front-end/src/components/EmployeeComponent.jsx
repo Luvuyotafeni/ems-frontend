@@ -66,7 +66,7 @@ const EmployeeComponent = () => {
     } else {
       createEmployee(employee).then((response) => {
         console.log(response.data);
-        console.log('Employee to be saved:', employee); // Debugging line
+        console.log('Employee to be saved:', employee); 
         navigate('/employees');
       }).catch(error => {
         console.error('Error saving employee:', error);

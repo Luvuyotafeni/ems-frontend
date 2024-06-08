@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ListEmployees } from '../services/EmployeeService';
+import { ListEmployees, deleteEmployee } from '../services/EmployeeService'; // Ensure these are correctly imported
 import { useNavigate } from 'react-router-dom';
 
 const ListEmployeesComponent = () => {
@@ -8,19 +8,32 @@ const ListEmployeesComponent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    getAllEmployees();
+  }, []);
+
+  function getAllEmployees() {
     ListEmployees().then((response) => {
       setEmployees(response.data);
     }).catch(error => {
       console.error(error);
     });
-  }, []);
+  }
 
   function AddNewEmployee() {
-    navigate('/add-Employee');
+    navigate('/add-Employee'); // Ensure this route is set up in your router
   }
 
   function updateEmployee(id){
-    navigate(`/edit-employee/${id}`);
+    navigate(`/edit-employee/${id}`); // Ensure this route is set up in your router
+  }
+
+  function removeEmployee(id){
+    deleteEmployee(id).then((response) => {
+      console.log(id);
+      getAllEmployees(); // Refresh the list after deletion
+    }).catch(error => {
+      console.error(error);
+    });
   }
 
   return (
@@ -56,8 +69,8 @@ const ListEmployeesComponent = () => {
                 <td>{employee.status}</td>
                 <td>{employee.physicalAddress}</td>
                 <td>
-                  <button onClick={()=> updateEmployee(employee.id)}><i class='bx bxs-pencil'></i></button>
-                  <button><i class='bx bx-trash' ></i></button>
+                  <button onClick={() => updateEmployee(employee.id)}><i className='bx bxs-pencil'></i></button>
+                  <button onClick={() => removeEmployee(employee.id)}><i className='bx bx-trash'></i></button>
                 </td>
               </tr>
             )
