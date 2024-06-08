@@ -8,3 +8,29 @@
     text-align: center;
     margin-top: 50px;
 }
+
+.welcome_pg{
+    text-align: center;
+    font-size: xx-large;
+    margin-top: 50px;
+}
+
+/* Menu.css */
+.menu-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px; /* Add space at the top */
+  }
+  
+  .menu-item {
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    padding: 20px; /* Add padding for space inside the container */
+    width: 200px; /* Set width of each container */
+    text-align: center; /* Center-align content */
+    background-color: #f9f9f9; /* Add background color */
+  }
+
+.back-arrow{
+    font-size: xx-large;
+}
