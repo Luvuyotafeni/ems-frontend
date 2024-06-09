@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createEmployee, getEmployee, updateEmployee } from '../services/EmployeeService';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -12,21 +12,13 @@ const EmployeeComponent = () => {
   const [status, setStatus] = useState('');
   const [physicalAddress, setPhysicalAddress] = useState('');
 
-  const {id} = useParams();
+  const { id } = useParams();
 
   const navigate = useNavigate();
-  const handleIdNo = (e) => setIdNo(e.target.value);
-  const handleFirstName = (e) => setFirstName(e.target.value);
-  const handleLastName = (e) => setLastName(e.target.value);
-  const handleEmail = (e) => setEmail(e.target.value);
-  const handleGender = (e) => setGender(e.target.value);
-  const handleStatus = (e) => setStatus(e.target.value);
-  const handlePosition = (e) => setPosition(e.target.value);
-  const handlePhysicalAddress = (e) => setPhysicalAddress(e.target.value);
 
-  useState(() =>{
-    if (id){
-      getEmployee(id).then((response)=>{
+  useEffect(() => {
+    if (id) {
+      getEmployee(id).then((response) => {
         setIdNo(response.data.idNo);
         setFirstName(response.data.firstName);
         setLastName(response.data.lastName);
@@ -37,9 +29,9 @@ const EmployeeComponent = () => {
         setPhysicalAddress(response.data.physicalAddress);
       }).catch(error => {
         console.error(error);
-      })
+      });
     }
-  }, [id])
+  }, [id]);
 
   const saveOrUpdateEmployee = (e) => {
     e.preventDefault();
@@ -47,89 +39,86 @@ const EmployeeComponent = () => {
     const employee = {
       idNo,
       firstName,
-      lastName,     
+      lastName,
       email,
       gender,
       status,
       position,
       physicalAddress
-  
     };
 
-    if (id){
-      updateEmployee(id, employee).then((response)=>{
+    if (id) {
+      updateEmployee(id, employee).then((response) => {
         console.log(response.data);
         navigate('/employees');
       }).catch(error => {
         console.error(error);
-      })
+      });
     } else {
       createEmployee(employee).then((response) => {
         console.log(response.data);
-        console.log('Employee to be saved:', employee); 
         navigate('/employees');
       }).catch(error => {
-        console.error('Error saving employee:', error);
+        console.error(error);
       });
     }
-    
+  };
 
-    
-
-    
-  }
-
-  function pageTitle(){
+  const pageTitle = () => {
     if (id) {
-      return <h2 className='text-center'>Update Employee</h2>
+      return <h2 className='text-center'>Update Employee</h2>;
     } else {
-      return <h2 className='text-center'>Add Employee</h2>
+      return <h2 className='text-center'>Add Employee</h2>;
     }
-  }
+  };
 
   return (
     <div className='container'>
       <br />
       <div className='row'>
         <div className='card col-md-6 offset-md-3'>
-          {
-            pageTitle()
-          }
+          {pageTitle()}
           <div className='card-body'>
             <form>
               <div className='form-group mb-2'>
-                <label className='form-label'>First Name</label>
-                <input type='text' placeholder='Enter First Name' value={firstName} className='form-control' onChange={handleFirstName} required/>
+                <label className='form-label mt-2'>First Name</label>
+                <input type='text' placeholder='Enter First Name' value={firstName} className='form-control' onChange={(e) => setFirstName(e.target.value)} required />
               </div>
               <div className='form-group mb-2'>
-                <label className='form-label'>Last Name</label>
-                <input type='text' placeholder='Enter Last Name' value={lastName} className='form-control' onChange={handleLastName} required/>
+                <label className='form-label mt-2'>Last Name</label>
+                <input type='text' placeholder='Enter Last Name' value={lastName} className='form-control' onChange={(e) => setLastName(e.target.value)} required />
               </div>
               <div className='form-group mb-2'>
-                <label className='form-label'>Email</label>
-                <input type='text' placeholder='Enter Email' value={email} className='form-control' onChange={handleEmail} required/>
+                <label className='form-label mt-2'>Email</label>
+                <input type='email' placeholder='Enter Email' value={email} className='form-control' onChange={(e) => setEmail(e.target.value)} required />
               </div>
               <div className='form-group mb-2'>
                 <label className='form-label'>Id No</label>
-                <input type='text' placeholder='Enter Id No' value={idNo} className='form-control' onChange={handleIdNo} required/>
+                <input type='text' placeholder='Enter Id No' value={idNo} className='form-control' onChange={(e) => setIdNo(e.target.value)} required />
               </div>
               <div className='form-group mb-2'>
-                <label className='form-label'>Gender</label>
-                <input type='text' placeholder='Enter Gender' value={gender} className='form-control' onChange={handleGender} required/>
+                <label className='form-label mt-2'>Gender</label>
+                <select value={gender} className='form-control' onChange={(e) => setGender(e.target.value)} required>
+                  <option value=''>Select Gender</option>
+                  <option value='male'>Male</option>
+                  <option value='female'>Female</option>
+                </select>
               </div>
               <div className='form-group mb-2'>
-                <label className='form-label'>Position</label>
-                <input type='text' placeholder='Enter Position' value={position} className='form-control' onChange={handlePosition} required/>
+                <label className='form-label mt-2'>Position</label>
+                <input type='text' placeholder='Enter Position' value={position} className='form-control' onChange={(e) => setPosition(e.target.value)} required />
               </div>
-              <div className='form-group mb-2'>
-                <label className='form-label'>Status</label>
-                <input type='text' placeholder='Enter Status' value={status} className='form-control' onChange={handleStatus} required/>
+              <div className='form-group mb-2 '>
+                <label className='form-label mt-2'>Status</label>
+                <input type='text' placeholder='Enter Status' value={status} className='form-control' onChange={(e) => setStatus(e.target.value)} required />
               </div>
-              <div className='form-group mb-2'>
-                <label className='form-label'>Physical Address</label>
-                <input type='text' placeholder='Enter Physical Address' value={physicalAddress} className='form-control' onChange={handlePhysicalAddress} required/>
+              <div className='form-group mb-2 '>
+                <label className='form-label mt-2'>Physical Address</label>
+                <input type='text' placeholder='Enter Physical Address' value={physicalAddress} className='form-control' onChange={(e) => setPhysicalAddress(e.target.value)} required />
               </div>
-              <button className='btn btn-success mb-2' onClick={saveOrUpdateEmployee}>Add Employee</button>
+              <div className='text-center mt-2'>
+              <button className='btn btn-success mb-2 mt-2 ' onClick={saveOrUpdateEmployee}>{id ? 'Update Employee' : 'Add Employee'}</button>
+              </div>
             </form>
           </div>
         </div>

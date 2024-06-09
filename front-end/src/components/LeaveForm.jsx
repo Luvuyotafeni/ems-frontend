@@ -16,28 +16,28 @@ const LeaveForm = () => {
                 </input>
               </div>
               <div className='form-group mb-2'>
-                <label className='form-label'>
+                <label className='form-label mt-2'>
                   Last Name
                 </label>
                 <input className='form-control'>
                 </input>
               </div>
               <div className='form-group mb-2'>
-                <label className='form-label'>
+                <label className='form-label mt-2'>
                   Email
                 </label>
                 <input className='form-control'>
                 </input>
               </div>
               <div className='form-group mb-2'>
-                <label className='form-label '>
+                <label className='form-label mt-2'>
                   Leave Start Date
                 </label>
                 <input className='form-control' type='date'>
                 </input>
               </div>
-              <div className='form-control mb-2'>
-                <label className='form-label'>
+              <div className='form-group mb-2'>
+                <label className='form-label mt-2'>
                   Leave End date
                 </label>
                 <input className='form-control' type='date'>
