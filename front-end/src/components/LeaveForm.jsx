@@ -2,10 +2,10 @@ import React from 'react'
 
 const LeaveForm = () => {
   return (
-    <div className='container'>
+    <div className='container mt-2'>
       <div className='row'>
         <div className='card col-md-6 offset-md-3'>
-          <div>Leave Form</div>
+          <div className='text-center'>Leave Form</div>
           <div className='card-body'>
             <form>
               <div className='form-group mb-2'>
@@ -33,17 +33,19 @@ const LeaveForm = () => {
                 <label className='form-label '>
                   Leave Start Date
                 </label>
-                <input className='form-control' type='datetime-local'>
+                <input className='form-control' type='date'>
                 </input>
               </div>
               <div className='form-control mb-2'>
                 <label className='form-label'>
                   Leave End date
                 </label>
-                <input className='form-control' type='datetime-local'>
+                <input className='form-control' type='date'>
                 </input>
               </div>
-              <button className='btn btn-success'>Apply</button>
+              <div className='text-center'>
+              <button className='btn btn-success '>Apply</button>
+              </div>
             </form>
           </div>
         </div>
