@@ -4,7 +4,7 @@ const LeaveForm = () => {
   return (
     <div className='container mt-2'>
       <div className='row'>
-        <div className='card col-md-6 offset-md-3'>
+        <div className='card col-md-6 offset-md-3 mb-2'>
           <div className='text-center'>Leave Form</div>
           <div className='card-body'>
             <form>
