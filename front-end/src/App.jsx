@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Welcome from './components/Welcome'
 import LogIn from './components/LogIn'
 import Menu from './components/Menu'
+import LeaveForm from './components/LeaveForm'
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
             <Route path='/employees' element={<ListEmployeesComponent/>}></Route>
             <Route path='/add-Employee' element={<EmployeeComponent/>}></Route>
             <Route path='/edit-employee/:id' element={<EmployeeComponent/>}></Route>
+            <Route path='/LeaveForm' element={<LeaveForm/>}></Route>
           </Routes>
         <Footer/>
         </BrowserRouter>
