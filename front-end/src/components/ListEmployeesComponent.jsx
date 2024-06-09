@@ -27,6 +27,9 @@ const ListEmployeesComponent = () => {
     navigate(`/edit-employee/${id}`); // Ensure this route is set up in your router
   }
 
+  function menu(){
+    navigate('/menu')
+  }
   function removeEmployee(id){
     deleteEmployee(id).then((response) => {
       console.log(id);
@@ -39,7 +42,7 @@ const ListEmployeesComponent = () => {
   return (
     <div className='container'>
       <p className='back-arrow'>
-      <i class='bx bxs-left-arrow-square'></i>
+      <i class='bx bxs-left-arrow-square' onClick={menu}></i>
       </p>
       <h2 className='text-center'>Company Employees</h2>
       <button className='btn btn-primary mb-2' onClick={AddNewEmployee}>Add Employee</button>
