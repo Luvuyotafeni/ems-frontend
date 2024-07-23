@@ -8,6 +8,7 @@ import Welcome from './components/Welcome'
 import LogIn from './components/LogIn'
 import Menu from './components/Menu'
 import LeaveForm from './components/LeaveForm'
+import EmployeeMenu from './components/EmployeeMenu'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
             <Route path='/' element={<Welcome/>}></Route>
             <Route path='/LogIn' element={<LogIn/>}></Route>
             <Route path='/menu' element={<Menu/>}></Route>
+            <Route path='/employeeMenu' element={<EmployeeMenu/>}></Route>
             <Route path='/employees' element={<ListEmployeesComponent/>}></Route>
             <Route path='/add-Employee' element={<EmployeeComponent/>}></Route>
             <Route path='/edit-employee/:id' element={<EmployeeComponent/>}></Route>
