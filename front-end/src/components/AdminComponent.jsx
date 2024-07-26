@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
-import { getAdmin } from '../services/AdminService';
+import { createAdmin, getAdmin, updateAdmin } from '../services/AdminService';
 
 const AdminComponent = () => {
 
@@ -25,6 +25,32 @@ const AdminComponent = () => {
             });
         }
     },[id]);
+
+    const saveOrUpdateAdmin = (e) => {
+    
+        const admin ={
+            firstName,
+            LastName,
+            Email,
+            Password
+        };
+
+        if (id) {
+            updateAdmin(id, admin).then((response) => {
+                console.log(response.data);
+                naviagte('/admins');
+            }).catch(error => {
+                console.error(error);
+            });
+        } else {
+            createAdmin(admin).then((response) => {
+                console.log(response.data);
+                naviagte('/admins');
+            }).catch(error => {
+                console.error(error);
+            });
+        }
+    };
 
   return (
     <div className='container'>

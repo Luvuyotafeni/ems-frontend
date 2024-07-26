@@ -9,6 +9,7 @@ import LogIn from './components/LogIn'
 import Menu from './components/Menu'
 import LeaveForm from './components/LeaveForm'
 import EmployeeMenu from './components/EmployeeMenu'
+import ListAdminComponent from './components/ListAdminComponent'
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
             <Route path='/add-Employee' element={<EmployeeComponent/>}></Route>
             <Route path='/edit-employee/:id' element={<EmployeeComponent/>}></Route>
             <Route path='/LeaveForm' element={<LeaveForm/>}></Route>
+            <Route path='/admins' element={<ListAdminComponent/>}></Route>
           </Routes>
         <Footer/>
         </BrowserRouter>
