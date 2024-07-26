@@ -20,9 +20,11 @@ const AdminComponent = () => {
                 setLastName(response.data.LasttName);
                 setEMail(response.data.Email);
                 setPassword(response.data.Password);
-            })
+            }).catch(error => {
+                console.error(error);
+            });
         }
-    })
+    },[id]);
 
   return (
     <div className='container'>
