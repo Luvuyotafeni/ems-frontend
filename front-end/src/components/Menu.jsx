@@ -9,6 +9,11 @@ const Menu = () => {
     navigate('/employees'); 
   };
 
+
+  const handleSeeAdmins = () => {
+    navigate('/admins'); 
+  };
+
   return (
     <div className='menu-container'>
       <div className='menu-item'>
@@ -17,7 +22,7 @@ const Menu = () => {
       </div>
       <div className='menu-item'>
         <p>Admin</p>
-        <button className='btn btn-primary'>See Admin</button>
+        <button className='btn btn-primary' onClick={handleSeeAdmins}>See Admin</button>
       </div>
       <div className='menu-item'>
         <p>Leaves</p>

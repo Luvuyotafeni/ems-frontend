@@ -52,9 +52,47 @@ const AdminComponent = () => {
         }
     };
 
+    const pageTitle = () =>{
+        if (id) {
+            return <h2 className='text-center'>Update Admin</h2>;
+          } else {
+            return <h2 className='text-center'>Add Admin</h2>;
+          }
+    };
+
   return (
     <div className='container'>
-        
+        <br/>
+        <div className='row'>
+            <div className='card col-md-6 offset-md-3'>
+                {pageTitle}
+                <div className='card-body'>
+                    <form>
+                        <div className='form-group mb-2'>
+                            <label className='form-label mt-2'>First Name</label>
+                            <input type='text' placeholder='Enter First Name' value={firstName} className='form-control' onChange={(e) => setFirstName(e.target.value)} required />
+                        </div>
+                        <div className='form-group mb-2'>
+                            <label className='form-label mt-2'>Surname </label>
+                            <input type='text' placeholder='Enter First Name' value={LastName} className='form-control' onChange={(e) => setFirstName(e.target.value)} required />
+                        </div>
+                        <div className='form-group mb-2'>
+                            <label className='form-label mt-2'>Email</label>
+                            <input type='text' placeholder='Enter First Name' value={Email} className='form-control' onChange={(e) => setFirstName(e.target.value)} required />
+                        </div>
+                        <div className='form-group mb-2'>
+                            <label className='form-label mt-2'>Password </label>
+                            <input type='text' placeholder='Enter First Name' value={Password} className='form-control' onChange={(e) => setFirstName(e.target.value)} required />
+                        </div>
+                        <div className='text-center mt-2'>
+                            <button className='btn btn-success mb-2 mt-2 ' onClick={saveOrUpdateAdmin}>{id ? 'Update Employee' : 'Add Employee'}</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
     </div>
   )
 }
