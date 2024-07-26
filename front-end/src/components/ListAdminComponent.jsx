@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { ListAdmins , deleteAdmin, updateAdmin } from '../services/AdminService'
+import { ListAdmins , deleteAdmin} from '../services/AdminService'
 import { useNavigate } from 'react-router-dom'
 
 const ListAdminComponent = () => {
